@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../Navigation-footer.css">
+  <link rel="stylesheet" href="ActivityLog.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>Activity Log</title>
+</head>
+
+<body>
+  <style>
+    .activity-log-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      background-color: white;
+    }
+
+    .activity-log-table th,
+    td {
+      padding: 10px;
+      text-align: left;
+      width: 10px;
+      margin: 0px;
+    }
+
+    .activity-log-table tr {
+      box-shadow: 0 2px 5px grey;
+      border-radius: 10px;
+    }
+
+    .activity-log-table thead {
+      background-color: #0c77a8;
+      color: white;
+      border-radius: 10px;
+    }
+
+
+    .activity-log-table .action-btn {
+      padding: 5px 10px;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      transform: scale(0.96);
+    }
+  </style>
+
+  <div class="maincont">
+    <div class="nav">
+      <div class="imagecont">
+        <img src="SWD-Logo-Icon.png" alt="" />
+      </div>
+
+      <div class="links">
+        <ul>
+          <li  >
+            <a href="../dashboards/Dashboard.html">
+              <div>
+                <img src="icons8-dashboard-48.png" alt="" />
+                <label for="">Dashboard</label>
+              </div>
+            </a>
+          </li>
+          <li class="highlight">
+            <a href="../Activity log/ActivityLog.html">
+              <div>
+                <img src="icons8-verified-account-48.png" alt="" />
+                <label for="">Activity Log</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Application report/Applicationreport.html">
+              <div>
+                <img src="../Admin imgs/icons8-system-task-48.png" alt="" />
+                <label for="">Application report</label>
+              </div>
+            </a>
+          </li>
+          <li class="userManagement">
+            <a href="../UserManagement/Usernanagement.html">
+              <div>
+                <img src="icons8-user-secured-48.png" alt="" />
+                <label for="">User Management</label>
+              </div>
+            </a>
+          </li>
+          <li >
+            <a href="/Admin/Payout Schedule/PayoutSchedule.html">
+              <div>
+                <img src="icons8-schedule-100.png" alt="" />
+                <label for="">Payout Schedule</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/Admin/Payout history/PayoutHistory.html">
+              <div>
+              <img src="icons8-history-100.png"
+            alt="" /><label>Payout History</label>
+          </div></a></li>
+        </li>
+        <li class="logout">
+          <a href="/Admin/Login/Admin Login.html">
+         <div>
+            <img src="icons8-logout-32.png" alt="" />
+            <label for="">Logout</label>
+          </div>
+         </li>
+        </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>ACTIVITY LOG</p>
+        </div>
+        <div class="button">
+          <div>
+            <p id="roleDisplay">Role</p> <!-- Dynamic role display -->
+          </div>
+          <div class="buttonimg">
+            <img src="icons8-admin-26.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <!-- Search icon -->
+        <img src="icons8-search-50.png" alt="Search Icon" class="search-icon" />
+
+        <!-- Search input field -->
+        <input type="text" class="search-input" placeholder="Search..." />
+      </div>
+      <div class="maincardcont">
+        <div class="card-container">
+          <div class="overflowcont">
+            <!-- Activity Log Table -->
+            <table id="activity-log-table" class="activity-log-table">
+              <thead>
+                <tr>
+                  <th>Resident Name</th>
+                  <th>Action</th>
+                  <th>Staff/Admin Name</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+
+     // Role-Based Visibility and Display
+     const userRole = sessionStorage.getItem('userRole');
+    const roleDisplay = document.getElementById('roleDisplay');
+    const userManagementLink = document.querySelector('.userManagement');
+    const settingsLink = document.querySelector('.settings-link');
+
+    if (userRole) {
+      // Display the user's role
+      roleDisplay.textContent = `${userRole.charAt(0).toUpperCase() + userRole.slice(1)}`;
+
+      // Hide User Management and Settings for staff
+      if (userRole === 'staff') {
+        if (userManagementLink) userManagementLink.style.display = 'none'; // Hide the User Management link
+        if (settingsLink) settingsLink.style.display = 'none'; // Hide the Settings link
+      }
+    } else {
+      // Fallback if role is missing
+      console.warn('User role not found in sessionStorage.');
+      roleDisplay.textContent = 'Unknown Role';
+    }
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+    };
+    const firebaseDatabase = firebase.initializeApp(firebaseConfig);
+    const database = firebaseDatabase.database();
+
+    // Function to load Activity Log entries
+    function loadActivityLog() {
+      const activityLogTableBody = document.querySelector("#activity-log-table tbody");
+      activityLogTableBody.innerHTML = ""; // Clear existing rows
+
+      const activityLogRef = database.ref("2-activity-log"); // Get the reference for activity-log
+
+      activityLogRef.once("value", (snapshot) => {
+        const data = snapshot.val(); // Fetch data from Firebase
+
+        if (!data) {
+          // If no data exists, display a message
+          const emptyRow = document.createElement("tr");
+          const emptyCell = document.createElement("td");
+          emptyCell.setAttribute("colspan", 4); // Adjust to match the number of table columns
+          emptyCell.textContent = "No activity log entries found.";
+          emptyRow.appendChild(emptyCell);
+          activityLogTableBody.appendChild(emptyRow);
+          return;
+        }
+
+        // Iterate through log entries
+        Object.keys(data).forEach((key) => {
+          const logItem = data[key]; // Log item fetched from Firebase
+          const row = document.createElement("tr");
+
+          // Resident Name
+          const residentNameCell = document.createElement("td");
+          residentNameCell.textContent = logItem.residentName || "Unknown";
+
+          // Action (Accepted/Rejected)
+          const actionCell = document.createElement("td");
+          actionCell.textContent = logItem.action || "Unknown";
+
+          // Staff/Admin Name
+          const userCell = document.createElement("td");
+          userCell.textContent = logItem.user || "Unknown";
+
+          // Timestamp
+          const timestampCell = document.createElement("td");
+          timestampCell.textContent = new Date(logItem.timestamp).toLocaleString();
+
+          // Append cells to the row
+          row.appendChild(residentNameCell);
+          row.appendChild(actionCell);
+          row.appendChild(userCell);
+          row.appendChild(timestampCell);
+
+          // Append the row to the table
+          activityLogTableBody.appendChild(row);
+        });
+      });
+    }
+
+    // Load activity log entries on page load
+    loadActivityLog();
+
+  </script>
+
+</body>
+
+</html>

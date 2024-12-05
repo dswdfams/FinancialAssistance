@@ -1,0 +1,270 @@
+* {
+    font-family: "poppins";
+    box-sizing: border-box;
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    width: fit-content;
+  }
+  a:hover {
+    border-bottom: 2px solid white;
+  }
+  body {
+    padding: 0px;
+    display: block;
+    margin: 0px;
+    border: 2px solid black;
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+  }
+  
+  nav {
+    width: 100%;
+    height: 89px;
+    background-color: #0c77a8;
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+  
+  .time {
+    display: flex;
+    position: relative;
+    width: 90%;
+  
+    justify-content: end;
+    height: auto;
+  }
+  #date,
+  #time,
+  .time label {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    font-family: "poppins";
+  }
+  
+  .Logocont {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+  .DSWDLOGO {
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+  }
+  
+  .main-container {
+    height: 250vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-container .Title {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-container #Aboutus {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .main-container #Aboutus-Paragraph {
+    text-align: center;
+    font-size: 15px;
+  }
+  .first-card-container {
+    display: flex;
+    position: relative;
+    width: 700px;
+    height: 500px;
+    margin-bottom: 50px;
+  }
+  
+  .child-container {
+    width: 500px;
+    height: 345px;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 10px;
+    padding: 10px 30px 30px 30px;
+    align-self: center;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+  }
+  
+  .child-container #Aboutus {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
+  }
+  .child-container #Aboutus-Paragraph {
+    text-align: justify;
+    font-size: 15px;
+  }
+  .picture-stack-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-self: center;
+  
+    right: 1px;
+  }
+  .picture-stack-container img {
+    width: 240px;
+    height: 138px;
+    background-color: antiquewhite;
+    box-shadow: 2px 2px 5px grey;
+  }
+  #one {
+    border-radius: 10px 10px 0px 0px;
+  }
+  #three {
+    border-radius: 0px 0px 10px 10px;
+  }
+  .second-card-container {
+    display: flex;
+    margin-top: 10px;
+  }
+  .first-team-section {
+    display: flex;
+  }
+  .first-team-section div {
+    width: 159px;
+    height: 220px;
+    box-shadow: 2px 2px 5px grey;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  
+    padding: 0px;
+    border-radius: 10px;
+  }
+  
+  .first-team-section div img {
+    width: 100%;
+    height: 135px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .Second-team-section {
+    display: flex;
+    justify-content: center;
+  }
+  .Second-team-section div {
+    width: 159px;
+    height: 239px;
+    box-shadow: 2px 2px 5px grey;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  
+    padding: 0px;
+    border-radius: 10px;
+  }
+  .Second-team-section div img {
+    width: 100%;
+    height: 135px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .team p {
+    margin-top: 10px;
+  }
+  #Name {
+    font-size: 12px;
+    font-weight: bold;
+  
+    text-align: center;
+    margin: 0px;
+  }
+  #Role {
+    font-size: 13px;
+  
+    text-align: center;
+  }
+  
+  /* /
+  /
+  /
+  /
+  /
+  //
+  /
+  /
+  / */
+  .footer {
+    background-color: #0c77a8;
+    width: 100%;
+    height: 167px;
+    margin-top: auto;
+    padding: 0px;
+  }
+  .footer p {
+    color: white;
+  }
+  .upper-section {
+    height: 30px;
+    padding: 0px;
+  
+    display: flex;
+    align-items: end;
+    justify-content: end;
+  }
+  .upper-section p {
+    font-size: 10px;
+    font-weight: lighter;
+    margin: 10px;
+  }
+  .Lower-Section {
+    height: 76%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    width: 100%;
+  }
+  .Lower-section {
+    display: flex;
+  
+    justify-content: space-between;
+    margin-top: auto;
+    height: 100px;
+  }
+  .first-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.3%;
+  }
+  .first-section p {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .second-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: solid 2px white;
+    border-right: solid 2px white;
+    width: 33.3%;
+  }
+  .second-section p {
+    margin: 0px 40px 0px 40px;
+  }
+  .third-section {
+    width: 33.3%;
+  }
+  

@@ -1,0 +1,294 @@
+* {
+  font-family: "poppins";
+  box-sizing: border-box;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+html {
+  min-height: 100%;
+  position: relative;
+}
+.maincont {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.parent-cardcont {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+/* navigation */
+.nav {
+  width: 200px;
+  height: 100%;
+  background-color: #8dbfd6;
+  display: block;
+  justify-items: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+.imagecont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-top: 50px;
+}
+.imagecont img {
+  height: 75px;
+  width: 75px;
+}
+
+ul {
+  padding: 0px;
+  margin-top: 75px;
+  display: block;
+}
+ul li div {
+  margin: 0px;
+
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  padding-left: 40px;
+}
+li label {
+  margin-left: 10px;
+}
+.links img {
+  height: 30px;
+  width: 30px;
+  opacity: 80%;
+}
+.links label {
+  color: white;
+  font-size: 12px;
+}
+.highlight {
+  background-color: #0c77a8;
+}
+
+ul li div:hover {
+  transform: scale(0.96);
+}
+.logout {
+  bottom: 0;
+  width: 200px;
+  margin-bottom: 20px;
+  margin-top: auto;
+  position: absolute;
+}
+.logout div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logout img {
+  height: 30px;
+  width: 30px;
+  opacity: 80%;
+  margin-right: 10px;
+}
+.logout div:hover {
+  transform: scale(0.96);
+}
+.logout label {
+  color: white;
+}
+
+/* DROPDOWN */
+.dropdown-content {
+  display: block;
+  position: absolute;
+  margin: 60px 0px 0px 0px;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 10px;
+  text-decoration: none;
+  background-color: hsl(199, 47%, 70%);
+  width: 170px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px grey;
+  display: none;
+  font-size: 12px;
+}
+.dropdown-content a:hover {
+  background-color: #0c77a8;
+}
+.dd {
+  margin: 0px;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  padding-left: 40px;
+  display: flex;
+  position: relative;
+}
+.dd label {
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+}
+.dd:hover a {
+  display: block;
+}
+/* DROPDOWN */
+/* navigation */
+.title {
+  display: flex;
+  padding-left: 40px;
+  align-items: center;
+  border-bottom: 2px solid rgb(210, 210, 210);
+}
+
+.title .childtitle {
+  align-items: self-start;
+}
+.childtitle p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.button {
+  border-radius: 25px;
+  height: 50px;
+  width: 130px;
+  display: flex;
+  background-color: #0c77a8;
+  align-items: center;
+  padding: 0px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+.button p {
+  color: white;
+  margin-left: 20px;
+}
+.buttonimg {
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 10px;
+  width: 35px;
+  height: 35px;
+}
+.childcard {
+  height: 90%;
+  display: flex;
+  padding: 30px;
+}
+.option-container {
+  margin: 0px 30px 0px 0px;
+  width: fit-content;
+}
+.option-container div {
+  width: 200px;
+  height: 53px;
+  padding: 2px;
+}
+.option-container p {
+  margin: 0px;
+  width: 100%;
+  color: white;
+}
+
+.option-container .head {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px 0px 0px 10px;
+}
+.option-container .sub {
+  font-size: 8px;
+  margin: 0px 0px 0px 10px;
+}
+
+.Account-Setting,
+.Password-Security {
+  display: flex;
+  flex-direction: column; /* Stacks the <p> elements vertically */
+  justify-content: center; /* Centers the <p> elements vertically */
+  height: 150px; /* Set a fixed height for demonstration */
+  border: 1px solid #ccc; /* Optional: To visualize the container */
+  padding: 10px; /* Optional: Add padding if necessary */
+  background-color: #8dbfd6;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 3px 3px 10px grey;
+}
+
+.Account-Setting:hover {
+  background-color: #0c77a8;
+  transform: scale(0.96);
+}
+.Password-Security:hover {
+  background-color: #0c77a8;
+  transform: scale(0.96);
+}
+.Childcard2 {
+  width: 80%;
+  justify-self: end;
+  border-radius: 20px;
+  box-shadow: 3px 3px 10px grey;
+  padding: 30px;
+}
+.profile-container {
+  width: 100%;
+  border-bottom: 2px solid rgb(210, 210, 210);
+}
+.profcont {
+  margin-bottom: 20px;
+  padding: 0px;
+  display: block;
+  align-items: center;
+  width: fit-content;
+  padding: 20px;
+}
+.profileimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60px;
+  background-color: #000000;
+  height: 125px;
+  width: 125px;
+}
+
+.profileimg img {
+  height: 123px;
+  width: 123px;
+  border-radius: 60px;
+}
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+

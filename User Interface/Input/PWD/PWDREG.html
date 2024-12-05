@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="PWDREG.css" />
+    <link rel="stylesheet" href="/User Interface/footer-nav-user.css">
+    <title>People with Disability Registration</title>
+    <style>
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 190vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            
+          justify-content: center;
+          align-items: center;
+           
+        }
+                /* .modal-content{   
+
+                    background-color: white;
+                            padding: 20px;
+                            border-radius: 10px;
+                            width: 90%;
+                            max-width: 500px;
+                            text-align: justify
+                            h
+                        
+                            
+                    
+                } */
+
+         
+        .modal-content{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            height: 600px;
+       
+    
+          
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            
+        }
+
+        .modal-body {
+            padding: 0px 30px 0px 0px;
+height: 90%;
+            margin-bottom: 20px;
+           
+            overflow-y: scroll; 
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+        }
+
+        .modal button {
+            margin: 10px 5px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal strong{
+            list-style: none;
+        }
+        #content-head{
+            list-style: none;
+        }
+        ul li{
+            margin: 10px 0px 10px 0px;
+    
+            
+        }
+        ul li {
+            color: #0c77a8;
+        }
+        .overflowcont::-webkit-scrollbar {
+  width: 10px; /* Scroll bar width */
+}
+
+/* Thumb */
+.modal-body::-webkit-scrollbar-thumb {
+  background: #8dbfd6; /* Color of the thumb */
+  border-radius: 5px; /* Round edges */
+}
+
+/* Hover effect on thumb */
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #0c77a8;/* Darker color on hover */
+}
+
+/* Track (Background) */
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+  border-radius: 5px; /* Round edges for consistency */
+}
+.modal-body::-webkit-scrollbar {
+  width: 10px; /* Scroll bar width */
+}
+
+/* Thumb */
+.modal-body::-webkit-scrollbar-thumb {
+  background: #8dbfd6; /* Color of the thumb */
+  border-radius: 5px; /* Round edges */
+}
+
+/* Hover effect on thumb */
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #0c77a8;/* Darker color on hover */
+}
+
+/* Track (Background) */
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+  border-radius: 5px; /* Round edges for consistency */
+}
+.terms-and-conditions{
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <!-- Navigation code remains the same -->
+    </nav>
+
+    <div class="maincont">
+        <div class="bcont">
+            <div class="title">
+                <p style="font-size: 26px">PEOPLE WITH DISABILITY</p>
+            </div>
+            <div class="title2"><label>REQUIRED DOCUMENT/S</label></div>
+
+            <div class="regcont">
+                <div class="cont">
+                    <div class="inputcont">
+                        <div><input type="text" placeholder="First Name" id="firstname" required /></div>
+                        <div>
+                            <input type="text" placeholder="Middle Name" id="middlename" />
+                            <div class="mlabel">
+                                <input type="checkbox" id="nomiddlename" />
+                                <label for="nomiddlename" class="mid">I don't have a middle name</label>
+                            </div>
+                        </div>
+                        <div><input type="text" placeholder="Last Name" id="lastname" required /></div>
+                    </div>
+
+                    <div class="inputcont2">
+                        <div><input type="text" placeholder="Full Address" id="address" required /></div>
+                    </div>
+
+                    <div class="inputcont3">
+                        <div><input type="text" placeholder="Phone Number" id="contactNumber" required /></div>
+                        <div><input type="text" placeholder="Precinct Number" id="precinct" required /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="regcont2">
+                <div class="inputcont4">
+                    <div class="filecontainer">
+                        <div class="fileup">
+                            <input type="file" id="PWDID" name="PWDID" required />
+                            <label for="PWDID" id="PWDIDLBL">PWD ID</label>
+                        </div>
+                    </div>
+                    <div id="fileName" style="margin-top: 10px; color: green;"></div>
+                    <progress id="PWDProgress" value="0" max="100" style="display:none; margin-top: 10px;"></progress>
+                </div>
+            </div>
+
+            <div class="terms-and-conditions " >
+                <input type="checkbox" id="terms" disabled/>
+                <label for="terms" id="termsLabel">I agree to the <a href="#" id="showTerms">Terms and Conditions</a>.</label>
+            </div>
+
+            <div class="buttons">
+                <a href="/index.html"><button>Cancel</button></a>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Review Your Application</div>
+            <div class="modal-body">
+                <p><strong>First Name:</strong> <span id="reviewFirstName"></span></p>
+                <p><strong>Middle Name:</strong> <span id="reviewMiddleName"></span></p>
+                <p><strong>Last Name:</strong> <span id="reviewLastName"></span></p>
+                <p><strong>Address:</strong> <span id="reviewAddress"></span></p>
+                <p><strong>Phone Number:</strong> <span id="reviewPhone"></span></p>
+                <p><strong>Precinct Number:</strong> <span id="reviewPrecinct"></span></p>
+            </div>
+            <button id="editBtn">Edit</button>
+            <button id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Terms and Conditions</div>
+            <div class="modal-body">
+                <p>Terms and Conditions for DSWD Financial Assistance
+                    By using the DSWD Financial Assistance Management System (FAMS), you agree to the following terms and conditions:<br><br>
+                    
+                  <ul>
+  <li id="content-head"><strong>Eligibility Requirements</strong>
+    <ul>
+      <li>You must be a resident of the Philippines.</li>
+      <li>You must meet the eligibility criteria for the specific type of assistance (e.g., AICS, SCA, PWD, or EAR).</li>
+      <li>You must provide accurate and up-to-date information in the registration form.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Application Process</strong>
+    <ul>
+      <li>You can only submit one application for assistance at a time. If you have already submitted an application and it is still pending or accepted, you are not eligible to submit a new application.</li>
+      <li>If your previous application has been rejected, you may submit a new application.</li>
+      <li>You are responsible for ensuring the accuracy of the information provided. Providing false or misleading information may result in the rejection of your application or legal consequences.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Status of Application</strong>
+    <ul>
+      <li><strong>Pending:</strong> Your application is under review.</li>
+      <li><strong style="color:rgb(92, 198, 92); ">Accepted:</strong> Your application has been approved and a payout will be processed.</li>
+      <li><strong style="color:red ;" >Rejected:</strong> Your application has been rejected, and the reason will be provided. You may be eligible to resubmit if the application was rejected.</li>
+      <li><strong>Payout Information:</strong> If your application is accepted, a payout date will be scheduled. The amount and date will be provided based on your eligibility.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Use of Personal Information</strong>
+    <ul>
+      <li>By submitting your application, you consent to the collection and processing of your personal information by the DSWD for the purpose of administering the financial assistance program.</li>
+      <li>Your personal information will be stored securely in accordance with applicable data protection laws.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Resubmission of Application</strong>
+    <ul>
+      <li>If your previous application was rejected, you may be allowed to resubmit your application after addressing the reason for rejection.</li>
+      <li>You must comply with the requirements set by the DSWD for resubmission.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Fraud and Misuse</strong>
+    <ul>
+      <li>You are prohibited from engaging in fraudulent activities, including submitting false information or attempting to manipulate the application system.</li>
+      <li>Any form of fraud or misuse will result in immediate rejection of the application and potential legal action.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>No Guarantee of Assistance</strong>
+    <ul>
+      <li>The submission of an application does not guarantee approval of financial assistance. The DSWD will review each application based on eligibility and available funds.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Terms and Conditions Updates</strong>
+    <ul>
+      <li>The DSWD reserves the right to modify, update, or discontinue the terms and conditions at any time without notice. You will be informed of significant changes via the application portal.</li>
+    </ul>
+  </li>
+  <li id="content-head"><strong>Governing Law</strong>
+    <ul>
+      <li>These terms and conditions are governed by the laws of the Philippines, and any disputes will be subject to the exclusive jurisdiction of the Philippine courts.</li>
+    </ul>
+  </li>
+ 
+</ul>
+<p>For any questions regarding these terms, you can contact the DSWD at: <br>
+    DSWD Central Office, Constitution Hills, Batasan Complex, Quezon City, Philippines 1126 <br><br>
+    ☎️ (632) 8-931-81-01 to 07<br>
+    📲 GLOBE: 09171105686 and 09178272543<br>
+    📲 SMART: 09199116200<br>
+    📧 inquiry@dswd.gov.ph </p>
+                    <button id="agreeBtn">Agree</button>
+            </div>
+          
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer code remains the same -->
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+            authDomain: "sia101-d60a1.firebaseapp.com",
+            databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+            projectId: "sia101-d60a1",
+            storageBucket: "sia101-d60a1.appspot.com",
+            messagingSenderId: "258109532727",
+            appId: "1:258109532727:web:73d735dc749d2cb4ebedb2"
+        };
+
+        const firebaseDatabase = firebase.initializeApp(firebaseConfig);
+        const database = firebaseDatabase.database();
+        const storage = firebase.storage();
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const data = Object.fromEntries(urlParams.entries());
+
+        // Auto-fill fields from URL params
+        document.getElementById("firstname").value = data.firstName || "";
+        document.getElementById("middlename").value = data.middleName || "";
+        document.getElementById("lastname").value = data.lastName || "";
+        document.getElementById("contactNumber").value = data.mobileNumber || "";
+        document.getElementById("address").value = data.address || "Old Capitol Site Diliman Quezon City 1101";
+        document.getElementById("precinct").value = data.precinct || "";
+
+        // File Upload Handling
+        const pwdIdInput = document.getElementById("PWDID");
+        const fileNameDisplay = document.getElementById("fileName");
+        const pwdProgress = document.getElementById("PWDProgress");
+
+        pwdIdInput.addEventListener("change", async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                fileNameDisplay.textContent = `Selected file: ${file.name}`;
+                pwdProgress.style.display = "block";
+
+                try {
+                    const newId = await generateID();
+                    const fileRef = storage.ref(`PWDID/${newId}_${file.name}`);
+                    const uploadTask = fileRef.put(file);
+
+                    uploadTask.on(
+                        "state_changed",
+                        (snapshot) => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            pwdProgress.value = progress;
+                        },
+                        (error) => {
+                            console.error("File upload error:", error);
+                            alert("An error occurred during the upload.");
+                        },
+                        async () => {
+                            const downloadURL = await fileRef.getDownloadURL();
+                            data.pwdIdUrl = downloadURL;
+                            alert("File uploaded successfully!");
+                        }
+                    );
+                } catch (error) {
+                    console.error("Error uploading file:", error);
+                    alert("An error occurred.");
+                }
+            }
+        });
+
+        // Auto-fill review modal and validate fields
+        const nextBtn = document.getElementById("nextBtn");
+        const reviewModal = document.getElementById("reviewModal");
+
+        nextBtn.addEventListener("click", () => {
+            if (validateFields()) {
+                document.getElementById("reviewFirstName").textContent = document.getElementById("firstname").value;
+                document.getElementById("reviewMiddleName").textContent = document.getElementById("middlename").value || "N/A";
+                document.getElementById("reviewLastName").textContent = document.getElementById("lastname").value;
+                document.getElementById("reviewAddress").textContent = document.getElementById("address").value;
+                document.getElementById("reviewPhone").textContent = document.getElementById("contactNumber").value;
+                document.getElementById("reviewPrecinct").textContent = document.getElementById("precinct").value;
+                reviewModal.style.display = "flex";
+            }
+        });
+
+        function validateFields() {
+            const requiredFields = ["firstname", "lastname", "contactNumber", "address", "precinct", "PWDID"];
+            for (let field of requiredFields) {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    alert(`Please fill out the ${field} field.`);
+                    return false;
+                }
+            }
+            if (!document.getElementById("terms").checked) {
+                alert("You must agree to the terms and conditions.");
+                return false;
+            }
+            return true;
+        }
+
+        // Confirm and Save to Firebase
+        document.getElementById("confirmBtn").addEventListener("click", async () => {
+            reviewModal.style.display = "none";
+            await saveResidentData();
+        });
+
+        async function saveResidentData() {
+            try {
+                const newId = await generateID();
+                await database.ref(`2-Assistance/${newId}`).set({
+                    firstName: document.getElementById("firstname").value.trim(),
+                    middleName: document.getElementById("middlename").value.trim(),
+                    lastName: document.getElementById("lastname").value.trim(),
+                    address: document.getElementById("address").value.trim(),
+                    contactNumber: document.getElementById("contactNumber").value.trim(),
+                    precinctNumber: document.getElementById("precinct").value.trim(),
+                    pwdIdUrl: data.pwdIdUrl || null,
+                    status: "PENDING",
+                    type: "PWD",
+                });
+                alert("Request data saved successfully.");
+                window.location.href = "/index.html";
+            } catch (error) {
+                console.error("Error saving data:", error);
+                alert("An error occurred while saving the resident data.");
+            }
+        }
+
+        async function generateID() {
+            const id = data.residentId || "unknown";
+            let count = 0;
+            try {
+                const snapshot = await database.ref("2-Assistance").once("value");
+                snapshot.forEach((child) => {
+                    if (child.key.startsWith(id)) count++;
+                });
+                return `${id}-${1000 + count}`;
+            } catch (error) {
+                console.error("Error generating ID:", error);
+                throw error;
+            }
+        }
+
+        // Terms Modal
+        document.getElementById("showTerms").addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById("termsModal").style.display = "flex";
+        });
+
+        document.getElementById("agreeBtn").addEventListener("click", () => {
+            document.getElementById("termsModal").style.display = "none";
+            document.getElementById("terms").checked = true;
+        });
+
+        document.getElementById("editBtn").addEventListener("click", () => {
+            reviewModal.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>

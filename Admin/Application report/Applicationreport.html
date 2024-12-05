@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../Navigation-footer.css">
+  <link rel="stylesheet" href="Applicationreport.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>Application Report</title>
+</head>
+
+<body>
+
+  <!-- Modal for Confirmation -->
+<div class="confirmation-modal">
+  <div class="confirmation-modal-content">
+    <p>Are you sure you want to <span id="confirmation-action">accept</span> this applicant?</p>
+    <div>
+      <button id="confirm-action-btn">Yes</button>
+      <button id="cancel-action-btn">No</button>
+    </div>
+  </div>
+</div>
+  <style>
+    
+    /* ETO PRE ISA Confirmation Modal */
+.confirmation-modal {
+  display: none;
+  align-items: center;
+ justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+}
+
+.confirmation-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid black;
+  position: absolute;
+  top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+}
+
+.confirmation-modal button {
+  margin: 10px;
+  padding: 10px;
+ width: 100px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+#confirm-action-btn{
+  background-color: rgb(92, 198, 92);
+}
+#cancel-action-btn #cancelRemarkBtn #confirmRemarkBtn{
+  background-color: red;
+}
+.confirmation-modal button:hover {
+  background-color: #085b7c;
+}
+
+  /* ETO PRE REJECTION REMARKS POP UP */
+
+/* Remark Modal */
+.remark-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.remark-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+}
+
+.remark-modal button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0c77a8;
+  width: 100px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.remark-modal button:hover {
+  background-color: #085b7c;
+}
+</style>
+
+
+
+  <div class="maincont">
+    <div class="nav">
+      <div class="imagecont">
+        <img src="DSWD-Logo-Icon.png" alt="" />
+      </div>
+
+      <div class="links">
+        <ul>
+          <li>
+            <a href="../dashboards/Dashboard.html">
+              <div>
+                <img src="icons8-dashboard-48.png" alt="" />
+                <label for="">Dashboard</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Activity log/ActivityLog.html">
+              <div>
+                <img src="icons8-verified-account-48.png" alt="" />
+                <label for="">Activity Log</label>
+              </div>
+            </a>
+          </li>
+          <li class="highlight">
+            <a href="../Application report/Applicationreport.html">
+              <div>
+                <img src="icons8-system-task-48.png" alt="" />
+                <label for="">Application report</label>
+              </div>
+            </a>
+          </li>
+          <li class="userManagement" >
+            <a href="../UserManagement/Usernanagement.html">
+              <div>
+                <img src="icons8-user-secured-48.png" alt="" />
+                <label for="">User Management</label>
+              </div>
+            </a>
+          </li>
+          <li >
+            <a href="/Admin/Payout Schedule/PayoutSchedule.html">
+              <div>
+                <img src="icons8-schedule-100.png" alt="" />
+                <label for="">Payout Schedule</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/Admin/Payout history/PayoutHistory.html">
+              <div>
+              <img src="icons8-history-100.png"
+            alt="" /><label>Payout History</label>
+          </div></a></li>
+        </li>
+        <li class="logout">
+          <a href="/Admin/Login/Admin Login.html">
+         <div>
+            <img src="icons8-logout-32.png" alt="" />
+            <label for="">Logout</label>
+          </div>
+         </li>
+        </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>APPLICATION REPORT</p>
+        </div>
+        <div class="button">
+          <div>
+            <p id="roleDisplay">Role</p> <!-- Dynamic role display -->
+          </div>
+          <div class="buttonimg">
+            <img src="icons8-admin-26.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="searchparent-container">
+        <div class="search-container">
+          <!-- Search icon -->
+          <img src="icons8-search-50.png" alt="Search Icon" class="search-icon" />
+
+          <!-- Search input field -->
+          <input type="text" class="search-input" placeholder="Search..." />
+        </div>
+
+        <div class="Searchbar-buttons">
+          <div class="Accepts"><a href="../Application report/Acceptedsample.html">Accepted Applicants</a></div>
+          <div class="Rejects"><a href="../Application report/RejectedApplications.html">Rejected Applicants</a></div>
+        </div>
+      </div>
+      <style>
+        .request-table {
+          width: 100%;
+          border-collapse: separate;
+          border-spacing: 0 10px;
+          background-color: white;
+
+        }
+
+        .request-table th td
+    {
+      padding: 10px;
+      text-align: center;
+      width: 10px;
+      margin: 0px;
+    }
+    .request-table td
+    {
+      padding: 10px;
+
+      text-align: center;
+      width: 10px;
+      margin: 0px;
+      font-size: 14px;
+    }
+        .request-table thead {
+          background-color: #0c77a8;
+          color: white;
+          border-radius: 10px;
+        }
+
+        .request-table tr {
+          box-shadow: 0 2px 5px grey;
+          border-radius: 10px;
+
+
+        }
+
+        .request-table .action-btn {
+          padding: 5px 10px;
+          margin: 2px;
+          cursor: pointer;
+        }
+
+        .request-table .reject {
+          background-color: red;
+          border-radius: 5px;
+          border: none;
+          color: white;
+          width: 70px;
+        }
+
+        .request-table .accept {
+          border-radius: 5px;
+          border: none;
+          background-color: rgb(92, 198, 92);
+          color: white;
+          width: 70px;
+        }
+        .request-table .view {
+      border-radius: 5px;
+      border: none;
+      background-color: #0c77a8;
+      color: white;
+      
+     width: 70px;
+ 
+    }
+    
+    
+        .accept:hover {
+          transform: scale(0.96);
+        }
+
+        .delete:hover {
+          transform: scale(0.96);
+        }
+      </style>
+      <div class="maincardcont">
+        <div class="card-container">
+          <div class="overflowcont">
+            <table id="request-table" class="request-table">
+              <thead>
+                <tr>
+                  <th>Assistance Type</th>
+                  <th>ID</th>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="card-container2" style=" overflow-y: auto;">
+          <style>
+            .card-container2::-webkit-scrollbar {
+
+              width: 10px;
+              /* Scroll bar width */
+            }
+
+            /* Thumb */
+            .card-container2::-webkit-scrollbar-thumb {
+              background: #8dbfd6;
+              /* Color of the thumb */
+              border-radius: 5px;
+              /* Round edges */
+            }
+
+            /* Hover effect on thumb */
+            .card-container2::-webkit-scrollbar-thumb:hover {
+              background: #0c77a8;
+              /* Darker color on hover */
+            }
+
+            /* Track (Background) */
+            .card-container2::-webkit-scrollbar-track {
+              background: #f1f1f1;
+              /* Track background color */
+              border-radius: 5px;
+              /* Round edges for consistency */
+              height: 30%;
+
+            }
+          </style>
+          <div class="profcont">
+            <div class="profileimg">
+              <img src="../Admin imgs/icons8-defaultprofile-100.png" alt="" id="profileImg" />
+            </div>
+            <div class="btns">
+              <div id="governmentIdBtn" style="cursor: pointer;" onclick="openpopup()">
+                <p>Government ID</p>
+              </div>
+              <div id="additionalIdBtn" style="cursor: pointer;">
+                <p>Additional ID</p>
+              </div>
+            </div>
+          </div>
+          <div class="resident-id">
+            <div class="resident-id-child">
+              <div class="resident-id-div">
+                <label for="">Resident ID</label>
+              </div>
+              <div class="resident-id-div2">
+                <label for="" id="residentId">09123</label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="overflowtable">
+            <div class="table">
+              <table class="information-table" id="informationTable">
+                <tr>
+                  <td id="firsttd">Last Name</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">First Name</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Middle Name</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Sex</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Religion</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Birth Place</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Date of Birth</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Phone</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Email</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Address</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Mother's Name</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Father's Name</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">Assistance Type</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td id="firsttd">School Name</td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+        <!-- Pop up boss -->
+
+        <div class="modal">
+          <div class="close-gov">
+            &times;
+
+          </div>
+          <div class="modal-content">
+
+            <img id="popupImage" alt="Government ID" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Remark Modal -->
+<div class="remark-modal">
+  <div class="remark-modal-content">
+    <h3>Provide a Reason for Rejection</h3>
+    <textarea id="remarkInput" placeholder="Enter the reason for rejection..." rows="5" style="width: 100%;"></textarea>
+    <div style="margin-top: 10px;">
+      <button id="confirmRemarkBtn">Submit</button>
+      <button id="cancelRemarkBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+      // Role-Based Visibility and Display
+      const userRole = sessionStorage.getItem('userRole');
+    const roleDisplay = document.getElementById('roleDisplay');
+    const userManagementLink = document.querySelector('.userManagement');
+    const settingsLink = document.querySelector('.settings-link');
+
+    if (userRole) {
+      // Display the user's role
+      roleDisplay.textContent = `${userRole.charAt(0).toUpperCase() + userRole.slice(1)}`;
+
+      // Hide User Management and Settings for staff
+      if (userRole === 'staff') {
+        if (userManagementLink) userManagementLink.style.display = 'none'; // Hide the User Management link
+        if (settingsLink) settingsLink.style.display = 'none'; // Hide the Settings link
+      }
+    } else {
+      // Fallback if role is missing
+      console.warn('User role not found in sessionStorage.');
+      roleDisplay.textContent = 'Unknown Role';
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const firebaseConfig = {
+        apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+        authDomain: "sia101-d60a1.firebaseapp.com",
+        databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+        projectId: "sia101-d60a1",
+        storageBucket: "sia101-d60a1.appspot.com",
+        messagingSenderId: "258109532727",
+        appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+      };
+      const firebaseDatabase = firebase.initializeApp(firebaseConfig);
+      const database = firebaseDatabase.database();
+  
+    
+
+      document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector(".modal");
+  const closeGovModal = document.querySelector(".close-gov");
+  const image = document.getElementById("popupImage");
+
+  // Ensure the modal is hidden when the page loads
+  modal.style.display = "none";
+
+  // Close modal function
+  closeGovModal.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // Function to show the government ID modal
+  function showGovernmentId(govIdUrl) {
+    image.src = govIdUrl || "../Admin imgs/default-gov-id.jpg";
+    modal.style.display = "block";
+  }
+
+  // Example usage
+  document.getElementById('governmentIdBtn').addEventListener('click', () => {
+    const govIdUrl = "URL_TO_GOV_ID"; // Replace with actual government ID URL
+    showGovernmentId(govIdUrl);
+  });
+});
+
+
+
+
+  
+      // Confirmation Modal
+      const confirmationModal = document.querySelector(".confirmation-modal");
+      const confirmationAction = document.getElementById("confirmation-action");
+      const confirmActionBtn = document.getElementById("confirm-action-btn");
+      const cancelActionBtn = document.getElementById("cancel-action-btn");
+  
+      // Remark Modal
+      const remarkModal = document.querySelector(".remark-modal");
+      const remarkInput = document.getElementById("remarkInput");
+      const confirmRemarkBtn = document.getElementById("confirmRemarkBtn");
+      const cancelRemarkBtn = document.getElementById("cancelRemarkBtn");
+  
+      let currentAction = "";
+      let currentApplicantKey = "";
+      let currentApplicantName = "";
+  
+      // Show confirmation modal
+      function showConfirmationModal(action, applicantKey, applicantName) {
+        confirmationAction.textContent = action;
+        currentAction = action;
+        currentApplicantKey = applicantKey;
+        currentApplicantName = applicantName;
+        confirmationModal.style.display = "block";
+      }
+  
+      // Close the confirmation modal
+      cancelActionBtn.addEventListener("click", () => {
+        confirmationModal.style.display = "none";
+      });
+  
+      // Confirm action (Accept or Reject)
+      confirmActionBtn.addEventListener("click", () => {
+        if (currentAction === "Accept") {
+          handleAccept(currentApplicantKey, currentApplicantName);
+        } else if (currentAction === "Reject") {
+          showRemarkModal(currentApplicantKey, currentApplicantName);
+        }
+        confirmationModal.style.display = "none";
+      });
+  
+      // Show Remark Modal
+      function showRemarkModal(applicantKey, applicantName) {
+        currentApplicantKey = applicantKey;
+        currentApplicantName = applicantName;
+        remarkModal.style.display = "flex";
+      }
+  
+      // Close Remark Modal
+      cancelRemarkBtn.onclick = () => {
+        remarkModal.style.display = "none";
+        remarkInput.value = "";
+      };
+  
+      // Confirm Remark Submission
+      confirmRemarkBtn.onclick = () => {
+        const remark = remarkInput.value.trim();
+        if (!remark) {
+          alert("Please provide a reason for rejection.");
+          return;
+        }
+  
+        handleRejectWithRemark(currentApplicantKey, currentApplicantName, remark);
+        remarkModal.style.display = "none";
+        remarkInput.value = "";
+      };
+  
+      // Handle Accept Application
+      function handleAccept(applicationKey, residentName) {
+        saveToActivityLog("Accepted", residentName); // Log activity
+  
+        const applicationRef = database.ref("2-Assistance/" + applicationKey);
+  
+        applicationRef.once("value", (snapshot) => {
+          const applicationData = snapshot.val();
+  
+          if (applicationData) {
+            const assistanceType = applicationData.type || "Unknown";
+  
+            // Update the status to "Accepted"
+            const updatedData = {
+              ...applicationData,
+              status: "Accepted",
+            };
+  
+            // Save the updated data to "2-Accepted-Applications"
+            const acceptedRef = database.ref(`2-Accepted-Applications/${assistanceType}/${applicationKey}`);
+            acceptedRef
+              .set(updatedData)
+              .then(() => {
+                applicationRef.remove();
+                populateRequestTable(); // Update table without reloading
+              })
+              .catch((error) => console.error("Error moving application to Accepted:", error));
+          }
+        });
+      }
+  
+      // Handle Reject with Remark
+      function handleRejectWithRemark(applicationKey, residentName, remark) {
+        saveToActivityLog("Rejected", residentName); // Log activity
+  
+        const applicationRef = database.ref("2-Assistance/" + applicationKey);
+  
+        applicationRef.once("value", (snapshot) => {
+          const applicationData = snapshot.val();
+  
+          if (applicationData) {
+            const assistanceType = applicationData.type || "Unknown";
+  
+            // Update the status to "Rejected" and include the remark
+            const updatedData = {
+              ...applicationData,
+              status: "Rejected",
+              rejectionReason: remark,
+            };
+  
+            // Save the updated data to "2-Rejected-Applications"
+            const rejectedRef = database.ref(`2-Rejected-Applications/${assistanceType}/${applicationKey}`);
+            rejectedRef
+              .set(updatedData)
+              .then(() => {
+                applicationRef.remove();
+                populateRequestTable(); // Update table without reloading
+              })
+              .catch((error) => console.error("Error moving application to Rejected:", error));
+          }
+        });
+      }
+  
+      // Function to save action to activity log
+      function saveToActivityLog(action, residentName) {
+        const timestamp = new Date().toISOString();
+        const user = sessionStorage.getItem("userName") || "Unknown";
+  
+        const activityLogRef = database.ref("2-activity-log").push();
+        activityLogRef.set({
+          residentName: residentName,
+          action: action,
+          user: user,
+          timestamp: timestamp,
+        });
+      }
+  
+      
+      // View applicant details
+      function viewApplicantDetails(requestItems, key) {
+        const residentRef = database.ref("Residents/" + key.slice(0, 12));
+        residentRef.once("value", (snapshot) => {
+          const data = snapshot.val();
+          const applicantDetails = document.getElementById("informationTable");
+          document.getElementById("governmentIdBtn").style = "cursor: pointer";
+          document.getElementById("additionalIdBtn").style = "cursor: pointer";
+          document.getElementById("residentId").textContent = key.slice(0, 12);
+          document.getElementById("profileImg").src = data.profileUrl || "../Admin imgs/maxresdefault.jpg";
+          document.getElementById('governmentIdBtn').addEventListener('click', () => showGovernmentId(data.validIdUrl));
+          document.getElementById('additionalIdBtn').addEventListener('click', () => showAdditionalId(data.additionalDocument));
+  
+          applicantDetails.innerHTML = `
+            <tr><td id="firsttd">Last Name</td><td>${data.lastName}</td></tr>
+            <tr><td id="firsttd">First Name</td><td>${data.firstName}</td></tr>
+            <tr><td id="firsttd">Middle Name</td><td>${data.middleName}</td></tr>
+            <tr><td id="firsttd">Sex</td><td>${data.sex}</td></tr>
+            <tr><td id="firsttd">Religion</td><td>${data.religion}</td></tr>
+            <tr><td id="firsttd">Birth Place</td><td>${data.birthplace}</td></tr>
+            <tr><td id="firsttd">Date of Birth</td><td>${data.birthdate}</td></tr>
+            <tr><td id="firsttd">Phone</td><td>${data.mobileNumber}</td></tr>
+            <tr><td id="firsttd">Email</td><td>${data.email}</td></tr>
+            <tr><td id="firsttd">Address</td><td>${data.address}</td></tr>
+            <tr><td id="firsttd">Mother's Name</td><td>${data.motherFirstName} ${data.motherLastName}</td></tr>
+            <tr><td id="firsttd">Father's Name</td><td>${data.fatherFirstName} ${data.fatherLastName}</td></tr>
+            <tr><td id="firsttd">Assistance Type</td><td>${requestItems.type}</td></tr>
+            <tr><td id="firsttd">School Name</td><td>${requestItems.schoolName || ""}</td></tr>
+          `;
+        });
+      }
+  
+      
+      // Populate request table
+      function populateRequestTable() {
+        const requestTableBody = document.querySelector("#request-table tbody");
+        requestTableBody.innerHTML = ""; // Clear table
+  
+        const assistanceRef = database.ref("2-Assistance");
+        assistanceRef.once("value", (snapshot) => {
+          const data = snapshot.val();
+  
+          if (!data) {
+            const emptyRow = document.createElement("tr");
+            const emptyCell = document.createElement("td");
+            emptyCell.setAttribute("colspan", 6);
+            emptyCell.textContent = "No applications found.";
+            emptyRow.appendChild(emptyCell);
+            requestTableBody.appendChild(emptyRow);
+            return;
+          }
+  
+          Object.keys(data).forEach((key) => {
+            const requestItems = data[key];
+  
+            const row = document.createElement("tr");
+  
+            const assistanceTypeCell = document.createElement("td");
+            assistanceTypeCell.textContent = requestItems.type || "N/A";
+  
+            const idCell = document.createElement("td");
+            idCell.textContent = key;
+  
+            const fullNameCell = document.createElement("td");
+            fullNameCell.textContent = requestItems.lastName || "N/A";
+  
+            const firstNameCell = document.createElement("td");
+            firstNameCell.textContent = requestItems.firstName || "N/A";
+  
+            const statusCell = document.createElement("td");
+            statusCell.textContent = requestItems.status || "Pending";
+  
+            const actionsCell = document.createElement("td");
+            const viewBtn = document.createElement("button");
+            viewBtn.classList.add("action-btn", "view");
+            viewBtn.textContent = "View";
+            viewBtn.addEventListener("click", () => {
+              viewApplicantDetails(requestItems, key);
+            });
+  
+            const acceptBtn = document.createElement("button");
+            acceptBtn.classList.add("action-btn", "accept");
+            acceptBtn.textContent = "Accept";
+            acceptBtn.addEventListener("click", () => {
+              showConfirmationModal("Accept", key, requestItems.firstName + " " + requestItems.lastName);
+            });
+  
+            const rejectBtn = document.createElement("button");
+            rejectBtn.classList.add("action-btn", "reject");
+            rejectBtn.textContent = "Reject";
+            rejectBtn.addEventListener("click", () => {
+              showConfirmationModal("Reject", key, requestItems.firstName + " " + requestItems.lastName);
+            });
+  
+            actionsCell.appendChild(viewBtn);
+            actionsCell.appendChild(acceptBtn);
+            actionsCell.appendChild(rejectBtn);
+            row.appendChild(assistanceTypeCell);
+            row.appendChild(idCell);
+            row.appendChild(fullNameCell);
+            row.appendChild(firstNameCell);
+            row.appendChild(statusCell);
+            row.appendChild(actionsCell);
+  
+            requestTableBody.appendChild(row);
+          });
+        });
+      }
+  
+      populateRequestTable();
+    });
+  </script>
+  
+  
+</body>
+
+</html>

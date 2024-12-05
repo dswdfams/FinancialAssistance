@@ -1,0 +1,160 @@
+* {
+  font-family: "poppins";
+}
+
+body {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0px;
+}
+body::-webkit-scrollbar{
+  display: none;
+}
+
+.maincont {
+  width: 100%;
+  height: 80%;
+  display: block;
+
+  margin: 0px;
+  padding: 0px;
+}
+.bcont {
+  position: relative;
+  height: auto;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 300px;
+}
+.title {
+  position: absolute;
+  display: flex;
+  top: -15px;
+  left: 50px;
+  height: 30px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 0px;
+}
+.title p {
+  font-family: "poppins";
+  font-weight: bold;
+  font-size: medium;
+  color: #0c77a8;
+}
+.regcont {
+  margin-top: 10vh;
+  width: 470px;
+  height: 435px;
+  border: 2px solid black;
+  border-radius: 20px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 10px 10px grey;
+  padding-bottom: 20px;
+}
+.Dslogo img {
+  width: 170px;
+  height: 170px;
+  display: flex;
+}
+.Dslogo {
+  align-self: center;
+  justify-self: center;
+  margin-top: 20px;
+}
+.buttons {
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+button {
+  width: 140px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #0c77a8;
+  color: white;
+  margin: 10px;
+}
+input[type="text"] {
+  height: 37px;
+  width: 300px;
+  border-radius: 10px;
+  padding: 0px 12px;
+  border: 2px solid grey;
+  margin: 5px;
+}
+.idinput {
+  display: flex;
+flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  width: 400px;
+
+  height: fit-content;
+}
+.idinput p{
+  text-align: center;
+  position: fixed;
+  margin-top: 55px;
+  width: 400px;
+}
+button:active {
+  transform: scale(0.96);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+
+.popup-card {
+  display: none;
+  position: absolute;
+border-radius: 10px;
+box-shadow: 0px 0px 20px gray;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+
+.popup-content {
+ 
+  padding: 20px;
+  border-radius: 10px;
+    width: 300px;
+  text-align: center;
+}
+
+#closePopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#statusMessage {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#additionalInfo {
+  font-size: 16px;
+  margin-top: 10px;
+}

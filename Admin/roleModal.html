@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .role-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .role-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      z-index: 1000;
+      border-radius: 10px;
+      width: 400px;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .modal-content table td {
+      padding: 10px;
+    }
+
+    .modal-content table td:first-child {
+      font-weight: bold;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+    }
+
+    #roleButton {
+      cursor: pointer;
+      background-color: #0c77a8;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #roleButton:hover {
+      background-color: #085b7c;
+    }
+  </style>
+</head>
+<body>
+  <div class="role-dropdown">
+    <button id="roleButton">Admin</button>
+    <div class="role-modal" id="roleModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2>User Details</h2>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td id="userName">N/A</td>
+          </tr>
+          <tr>
+            <td>ID:</td>
+            <td id="userId">N/A</td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td id="userEmail">N/A</td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td id="userStatus">N/A</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const roleButton = document.getElementById("roleButton");
+      const roleModal = document.getElementById("roleModal");
+      const closeModal = document.getElementById("closeModal");
+
+      const userNameField = document.getElementById("userName");
+      const userIdField = document.getElementById("userId");
+      const userEmailField = document.getElementById("userEmail");
+      const userStatusField = document.getElementById("userStatus");
+
+      const currentUserId = sessionStorage.getItem("currentUserId");
+
+      // Fetch user details
+      function loadCurrentUserDetails() {
+        if (!currentUserId) {
+          alert("User not found.");
+          return;
+        }
+
+        database.ref("2-Users/" + currentUserId).once("value", (snapshot) => {
+          const userData = snapshot.val();
+          if (userData) {
+            userNameField.textContent = userData.name || "N/A";
+            userIdField.textContent = userData.staffId || "N/A";
+            userEmailField.textContent = userData.email || "N/A";
+            userStatusField.textContent = userData.online ? "Online" : "Offline";
+          } else {
+            alert("User details not found.");
+          }
+        });
+      }
+
+      // Open the modal
+      roleButton.addEventListener("click", () => {
+        loadCurrentUserDetails();
+        roleModal.style.display = "block";
+      });
+
+      // Close the modal
+      closeModal.addEventListener("click", () => {
+        roleModal.style.display = "none";
+      });
+
+      // Close modal on outside click
+      window.addEventListener("click", (event) => {
+        if (event.target === roleModal) {
+          roleModal.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

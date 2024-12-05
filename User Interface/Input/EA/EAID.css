@@ -1,0 +1,110 @@
+* {
+  font-family: "poppins";
+}
+
+body {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+.maincont {
+  width: 100%;
+  height: 80%;
+  display: block;
+
+  margin: 0px;
+  padding: 0px;
+}
+.bcont {
+  position: relative;
+  height: auto;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 300px;
+}
+.title {
+  position: absolute;
+  display: flex;
+  top: -15px;
+  left: 50px;
+  height: 30px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 0px;
+}
+.title p {
+  font-family: "poppins";
+  font-weight: bold;
+  font-size: medium;
+  color: #0c77a8;
+}
+.regcont {
+  margin-top: 10vh;
+  width: 470px;
+  height: 435px;
+  border: 2px solid black;
+  border-radius: 20px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 10px 10px grey;
+  padding-bottom: 20px;
+}
+.Dslogo img {
+  width: 170px;
+  height: 170px;
+  display: flex;
+}
+.Dslogo {
+  align-self: center;
+  justify-self: center;
+  margin-top: 20px;
+}
+.buttons {
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+button {
+  width: 140px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #0c77a8;
+  color: white;
+  margin: 10px;
+}
+input[type="text"] {
+  height: 37px;
+  width: 300px;
+  border-radius: 10px;
+  padding: 0px 12px;
+  border: 2px solid grey;
+  margin: 5px;
+}
+.idinput {
+  display: flex;
+
+  justify-self: center;
+  margin-top: 50px;
+}
+button:active {
+  transform: scale(0.96);
+}
+
+button:hover {
+  cursor: pointer;
+}

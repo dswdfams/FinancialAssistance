@@ -1,0 +1,117 @@
+* {
+    font-family: "poppins";
+    box-sizing: border-box;
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    width: fit-content;
+  }
+  a:hover {
+    border-bottom: 2px solid white;
+  }
+  body {
+    padding: 0px;
+    display: block;
+    margin: 0px;
+    border: 2px solid black;
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+  }
+  
+  nav {
+    width: 100%;
+    height: auto;
+    background-color: #0c77a8;
+    align-items: center;
+    display: flex;
+    position: relative;
+    padding: 10px 20px;
+    
+  }
+  
+  .time {
+    display: flex;
+    position: relative;
+    width: 90%;
+  
+    justify-content: end;
+    height: auto;
+  }
+  #date,
+  #time,
+  .time label {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    font-family: "poppins";
+  }
+  
+  .Logocont {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+  .DSWDLOGO {
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+  }
+  
+  .main-container {
+    height: 250vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-container .Title {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-container #Aboutus {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .main-container #Aboutus-Paragraph {
+    text-align: center;
+    font-size: 15px;
+  }
+  .first-card-container {
+    display: flex;
+    position: relative;
+    width: 700px;
+    height: 500px;
+    margin-bottom: 50px;
+  }
+  
+  .child-container {
+    width: 500px;
+    height: 345px;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 10px;
+    padding: 10px 30px 30px 30px;
+    align-self: center;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+  }
+  
+  .child-container #Aboutus {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
+  }
+  .child-container #Aboutus-Paragraph {
+    text-align: justify;
+    font-size: 15px;
+  }
+ 
+  

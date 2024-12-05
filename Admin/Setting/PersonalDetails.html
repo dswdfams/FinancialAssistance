@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="PersonalDetails.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="maincont">
+    <div class="nav">
+      <div class="imagecont">
+        <img src="/Images/DSWD-Logo-Icon.png" alt="" />
+      </div>
+
+      <div class="links">
+        <ul>
+          <li class="">
+            <a href="../dashboards/Dashboard.html">
+              <div>
+                <img src="../Admin imgs/icons8-dashboard-48.png" alt="" />
+                <label for="">Dashboard</label>
+              </div>
+            </a>
+          </li>
+          <li class="highlight">
+            <a href="../Activity log/ActivityLog.html">
+              <div>
+                <img src="../Admin imgs/icons8-verified-account-48.png" alt="" /><label for="">Activity Log</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Application report/Applicationreport.html">
+              <div>
+                <img src="../Admin imgs/icons8-system-task-48.png" alt="" /><label for="">Application report</label>
+              </div>
+            </a>
+          </li>
+          <li class=""><a href="../UserManagement/Usernanagement.html">
+              <div>
+                <img src="../Admin imgs/icons8-user-secured-48.png" alt="" /><label for="">User Management</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="dd">
+              <img src="../Admin imgs/icons8-settings-48.png" alt="" /><label for=""> Settings</label>
+
+              <div class="dropdown-content">
+                <div><a href="../Setting/PersonalDetails.html">Personal
+                    Details</a><br /></div>
+                <div><a href="../Setting/Aboutus.html">About Us</a><br /></div>
+                <div><a href="../Setting/Securitypolicy.html">Security Policy</a></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="logout">
+        <div>
+          <img src="../Admin imgs/icons8-logout-32.png" alt="" /><label for="">
+            Logout</label>
+        </div>
+      </div>
+    </div>
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>PERSONAL DETAILS</p>
+        </div>
+        <div class="button">
+          <div>
+            <p>Admin</p>
+          </div>
+          <div class="buttonimg">
+            <img src="../Admin imgs/icons8-admin-26.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="childcard">
+        <div class="option-container">
+          <div class="Account-Setting">
+            <p class="head">Account Settings</p>
+            <p class="sub">Details About your personal information</p>
+          </div>
+          <div class="Password-Security">
+            <p class="head">Password & Security</p>
+            <p class="sub">Change Password</p>
+          </div>
+        </div>
+        <div class="Childcard2">
+          <div class="profile-container">
+            <div class="profcont">
+              <div class="profileimg">
+                <img src="../Admin imgs/maxresdefault.jpg" alt="" />
+              </div>
+              <div class="name"><label for="">Lorem Ipsum Dolor</label></div>
+            </div>
+          </div>
+
+          <!-- Change information here -->
+          <div class="Details-container">
+            <div class="information-content">
+              <p>
+                When updating personal information, ensure all details are
+                accurate. Use correct spelling for names, and format dates
+                consistently. Double-check all fields before submission.
+              </p>
+            </div>
+            <div class="Details-cont-child">
+              <div class="Text-container">
+                <!-- Username -->
+                <div class="Text-child-container">
+                  <label>Username</label><input type="text" placeholder="John Doe" />
+                </div>
+                <div class="Text-child-container">
+                  <!-- Email -->
+                  <label>Email</label><input type="text" placeholder="Admin.Admin@gmail.com" />
+                </div>
+              </div>
+              <div class="Text-container">
+                <div class="Text-child-container">
+                  <!-- First Name -->
+                  <label>First Name</label><input type="text" placeholder="John" />
+                </div>
+                <div class="Text-child-container">
+                  <!-- Middle Name -->
+                  <label>Middle Name</label><input type="text" placeholder="C" />
+                </div>
+              </div>
+              <div class="Text-container">
+                <div class="Text-child-container">
+                  <!-- Last Name -->
+                  <div><label>Last Name</label></div>
+                  <div><input type="text" placeholder="Doe" /></div>
+                </div>
+                <div class="Text-child-container">
+                  <!-- Suffix -->
+                  <label>Suffix</label><input type="text" placeholder="III" />
+                </div>
+              </div>
+              <div class="Text-container">
+                <div class="Text-child-container">
+                  <!-- Birthday -->
+                  <label>Date of Birth</label><input type="date" value="2000-01-01" />
+                </div>
+                <div class="Text-child-container">
+                  <!-- Gender -->
+                  <label>Gender</label><input type="text" placeholder="Male" />
+                </div>
+              </div>
+              <button>Change</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maincont -->
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

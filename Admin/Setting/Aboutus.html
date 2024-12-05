@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="Aboutus.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <nav>
+        <div class="Logocont">
+            <img src="C:\Users\63956\Downloads\PProj\User Interface\Images\DSWD.png" alt="" class="DSWDLOGO" />
+        </div>
+        <!-- time javascript  -->
+        <div class="time">
+            <div id="date-time-container">
+                <div id="date"></div>
+                <label for="">,</label>
+                <div id="time"></div>
+            </div>
+
+            <script>
+                function updateDateTime() {
+                    const now = new Date();
+
+                    // Format day and date
+                    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    const day = days[now.getDay()];
+                    const month = months[now.getMonth()];
+                    const date = now.getDate();
+                    const year = now.getFullYear();
+                    const dateString = `${day}, ${month} ${date}, ${year}`;
+
+                    // Format time
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+
+                    // Display date and time
+                    document.getElementById('date').textContent = dateString;
+                    document.getElementById('time').textContent = timeString;
+                }
+
+                updateDateTime(); // Initial call to display date and time immediately
+                setInterval(updateDateTime, 1000); // Update every second
+            </script>
+        </div>
+
+
+
+    </nav>
+
+
+
+    <div class="main-container">
+
+        <div class="Title">
+            <p id="Aboutus">
+                ABOUT US
+            </p>
+            <p id="Aboutus-Paragraph">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            </p>
+        </div>
+
+        <div class="first-card-container">
+            <div class="picture-stack-container">
+                <img src="Image.jpg" alt="" id="one">
+                <img src="Image2.jpg" alt="">
+                <img src="Image3.jpg" alt="" id="three">
+
+            </div>
+
+            <div class="child-container">
+
+                <p id="Aboutus">
+                    LOREM IPSUM DOLOR SIT AMET
+                </p>
+                <p id="Aboutus-Paragraph">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    labore et
+                    <br><br>s
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                </p>
+
+
+            </div>
+
+        </div>
+        <div class="Title">
+            <p id="Aboutus">
+                MEET OUR TEAM
+            </p>
+            <p id="Aboutus-Paragraph">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            </p>
+        </div>
+        <div class="second-card-container">
+
+            <div class="TEAM">
+                <div class="first-team-section">
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                </div>
+                <div class="Second-team-section">
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                    <div><img src="" alt="">
+                        <p id="Name">John Doe</p>
+                        <p id="Role">Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Lower-section">
+
+            <div class="first-section">
+                <p>DSWD - FAMS</p>
+            </div>
+            <div class="second-section">
+                <a href="../dashboards/Dashboard.html">
+                    <p>Home</p>
+                </a>
+                <a href="">
+                    <p>About</p>
+                </a>
+                <a href="">
+                    <p>Contact</p>
+                </a>
+            </div>
+            <div class="third-section">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

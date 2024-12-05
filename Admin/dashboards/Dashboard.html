@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../Navigation-footer.css">
+  <link rel="stylesheet" href="Dashboard.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <div class="maincont">
+    <div class="nav">
+      <div class="imagecont">
+        <img src="DSWD-Logo-Icon.png" alt="" />
+      </div>
+
+      <div class="links">
+        <ul>
+          <li class="highlight">
+            <a href="../dashboards/Dashboard.html">
+              <div>
+                <img src="icons8-dashboard-48.png" alt="" />
+                <label for="">Dashboard</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Activity log/ActivityLog.html">
+              <div>
+                <img src="icons8-verified-account-48.png" alt="" />
+                <label for="">Activity Log</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Application report/Applicationreport.html">
+              <div>
+                <img src="icons8-system-task-48.png" alt="" />
+                <label for="">Application report</label>
+              </div>
+            </a>
+          </li>
+          <li class="userManagement" >
+            <a href="../UserManagement/Usernanagement.html">
+              <div>
+                <img src="icons8-user-secured-48.png" alt="" />
+                <label for="">User Management</label>
+              </div>
+            </a>
+          </li>
+          <li >
+            <a href="/Admin/Payout Schedule/PayoutSchedule.html">
+              <div>
+                <img src="icons8-schedule-100.png" alt="" />
+                <label for="">Payout Schedule</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/Admin/Payout history/PayoutHistory.html">
+              <div>
+              <img src="../Admin imgs/icons8-history-100.png"
+            alt="" /><label>Payout History</label>
+          </div></a></li>
+        </li>
+        <li class="logout">
+          <a href="/Admin/Login/Admin Login.html">
+         <div>
+            <img src="icons8-logout-32.png" alt="" />
+            <label for="">Logout</label>
+          </div>
+         </li>
+        </a>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../Admin/Logout/logout.js"></script>
+
+
+    <!-- Logout Modal -->
+<div class="modal" id="logoutModal" style="display:none;">
+  <div class="modal-content">
+    <p>Are you sure you want to log out?</p>
+    <button id="confirmLogout">Yes</button>
+    <button id="cancelLogout">No</button>
+  </div>
+</div>
+
+
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>DASHBOARD</p>
+        </div>
+        <div class="button">
+          <div>
+            <p id="roleDisplay">Role</p> <!-- Role will be displayed dynamically -->
+          </div>
+          <div class="buttonimg">
+            <img src="icons8-admin-26.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="buttoncont"></div>
+      <div class="recent-activities">
+        <p>Data Summary</p>
+      </div>
+      <div class="cardcont1">
+        <div id="cards">
+          <div class="p">
+            <div>
+              <p>Total Pending</p>
+            </div>
+
+            <div class="of">
+              <!-- Total Pending Applicants -->
+              <p id="totalPending">0</p> <!-- This is the dynamic total -->
+            </div>
+          </div>
+
+          <div class="img-cont">
+            <div id="img">
+              <img src="icons8-time-100.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div id="cards">
+          <div class="p">
+            <div>
+              <p>Total Disbursed</p>
+            </div>
+            <div>
+              <!-- link here -->
+              <p id="Numbers">0</p>
+            </div>
+          </div>
+
+          <div class="img-cont">
+            <div id="img">
+              <img src="icons8-money-100.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div id="cards">
+          <div class="p">
+            <div>
+              <p>Total Applicants</p>
+            </div>
+            <div>
+              <!-- link here -->
+              <p id="totalApplicants">0</p>
+            </div>
+          </div>
+
+          <div class="img-cont">
+            <div id="img">
+              <img src="icons8-queue-100.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recent-activities">
+        <p>Resident Summary</p>
+      </div>
+    
+      <div class="cardcont2">
+        <div class="accepted-rejected-flex">
+          <div> <p id="acceptedCount">Total Accepted: </p></div>
+          <div ><p id="rejectedCount">Total Rejected: </p></div>
+        
+        </div>
+        <div id="Acts">
+
+        
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+       // Role-Based Visibility and Display
+  const userRole = sessionStorage.getItem('userRole');
+  const roleDisplay = document.getElementById('roleDisplay');
+  const userManagementLink = document.querySelector('.userManagement');
+  const settingsLink = document.querySelector('.settings-link');
+  
+  if (userRole) {
+    roleDisplay.textContent = `${userRole.charAt(0).toUpperCase() + userRole.slice(1)}`;
+    if (userRole === 'staff') {
+      if (userManagementLink) userManagementLink.style.display = 'none';
+      if (settingsLink) settingsLink.style.display = 'none';
+    }
+  } else {
+    console.warn('User role not found in sessionStorage.');
+    roleDisplay.textContent = 'Unknown Role';
+  }
+
+    // Firebase configuration and initialization
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+    };
+    const firebaseDatabase = firebase.initializeApp(firebaseConfig);
+    const database = firebaseDatabase.database();
+    const auth = firebase.auth();
+
+    // Function to update total pending applicants
+    function updateTotalPending() {
+      const totalPendingElement = document.getElementById('totalPending');
+
+      // Listen for changes in the '2-Assistance' node (pending applicants)
+      const assistanceRef = database.ref('2-Assistance');
+      assistanceRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        const totalPending = data ? Object.keys(data).length : 0; // Count the number of applicants
+
+        totalPendingElement.textContent = totalPending;
+      });
+    }
+
+    // Function to update total applicants (including accepted and rejected)
+    function updateTotalApplicants() {
+      const totalApplicantsElement = document.getElementById('totalApplicants');
+
+      // Listen for changes in all applicant nodes (2-Assistance, Accepted-Applications, Rejected-Applications)
+      const assistanceRef = database.ref('2-Assistance');
+      const acceptedRef = database.ref('2-Accepted-Applications');
+      const rejectedRef = database.ref('2-Rejected-Applications');
+      const PayoutHistory = database.ref('2-Payout-History');
+
+
+      Promise.all([assistanceRef.once('value'), acceptedRef.once('value'), rejectedRef.once('value')]).then(
+        ([assistanceSnapshot, acceptedSnapshot, rejectedSnapshot]) => {
+          const totalApplicants = (
+            (assistanceSnapshot.val() ? Object.keys(assistanceSnapshot.val()).length : 0) +
+            (acceptedSnapshot.val() ? Object.keys(acceptedSnapshot.val()).length : 0) +
+            (rejectedSnapshot.val() ? Object.keys(rejectedSnapshot.val()).length : 0)
+          );
+
+          totalApplicantsElement.textContent = totalApplicants;
+        }
+      );
+    }
+
+    // Function to update accepted and rejected applicants
+    function updateAcceptedRejectedCount() {
+      const acceptedCountElement = document.getElementById('acceptedCount');
+      const rejectedCountElement = document.getElementById('rejectedCount');
+
+      // Listen for changes in the 'Accepted-Applications' node (accepted applicants)
+      const acceptedRef = database.ref('2-Accepted-Applications');
+      acceptedRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        const totalAccepted = data ? Object.keys(data).length : 0; // Count the number of accepted applicants
+        acceptedCountElement.textContent = `Total Accepted: ${totalAccepted}`;
+      });
+
+      // Listen for changes in the 'Rejected-Applications' node (rejected applicants)
+      const rejectedRef = database.ref('2-Rejected-Applications');
+      rejectedRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        const totalRejected = data ? Object.keys(data).length : 0; // Count the number of rejected applicants
+        rejectedCountElement.textContent = `Total Rejected: ${totalRejected}`;
+      });
+    }
+
+    // Call the functions to start listening for updates
+    updateTotalPending();
+    updateTotalApplicants();
+    updateAcceptedRejectedCount();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../Navigation-footer.css">
+  <link rel="stylesheet" href="PayoutHistory.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>Payout History</title>
+</head>
+
+<body>
+    <div class="maincont">
+      <div class="nav">
+        <div class="imagecont">
+          <img src="DSWD-Logo-Icon.png" alt="" />
+        </div>
+  
+        <div class="links">
+          <ul>
+            <li >
+              <a href="../dashboards/Dashboard.html">
+                <div>
+                  <img src="icons8-dashboard-48.png" alt="" />
+                  <label for="">Dashboard</label>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="../Activity log/ActivityLog.html">
+                <div>
+                  <img src="icons8-verified-account-48.png" alt="" />
+                  <label for="">Activity Log</label>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="../Application report/Applicationreport.html">
+                <div>
+                  <img src="icons8-system-task-48.png" alt="" />
+                  <label for="">Application report</label>
+                </div>
+              </a>
+            </li>
+            <li class="userManagement">
+              <a href="../UserManagement/Usernanagement.html">
+                <div>
+                  <img src="icons8-user-secured-48.png" alt="" />
+                  <label for="">User Management</label>
+                </div>
+              </a>
+            </li>
+            <li >
+              <a href="/Admin/Payout Schedule/PayoutSchedule.html">
+                <div>
+                  <img src="icons8-schedule-100.png" alt="" />
+                  <label for="">Payout Schedule</label>
+                </div>
+              </a>
+            </li>
+            <li class="highlight">
+              <a href="/Admin/Payout history/PayoutHistory.html">
+                <div>
+                <img src="icons8-user-secured-48.png"
+              alt="" /><label>Payout History</label>
+            </div></a></li>
+          </li>
+          <li class="logout">
+            <a href="/Admin/Login/Admin Login.html">
+           <div>
+              <img src="icons8-logout-32.png" alt="" />
+              <label for="">Logout</label>
+            </div>
+           </li>
+          </a>
+          </ul>
+        
+        </div>
+      </div>
+  
+
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>Payout History</p>
+        </div>
+        <div class="button">
+          <div>
+            <p id="roleDisplay">Role</p>
+          </div>
+          <div class="buttonimg">
+            <img src="icons8-admin-26.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="searchparent-container">
+        <div class="search-container">
+          <img src="icons8-search-50.png" alt="Search Icon" class="search-icon" />
+          <input type="text" class="search-input" placeholder="Search by name or ID..." />
+        </div>
+
+        <div class="Searchbar-buttons">
+          <select id="assistanceTypeDropdown">
+            <option value="" disabled selected>Select Assistance Type</option>
+            <option value="AICS">Financial Assistance</option>
+            <option value="SCA">Senior Citizen Assistance</option>
+            <option value="EAR">Educational Assistance</option>
+            <option value="PWD">PWD Assistance</option>
+          </select>
+        </div>
+      </div>
+      <style> .request-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        background-color: white;
+        padding: 10px;
+      
+      }
+      
+      .request-table th,
+      td {
+        padding: 10px;
+      
+        text-align: left;
+        width: 10px;
+        margin: 0px;
+      }
+      
+      .request-table thead {
+        background-color: #0c77a8;
+        color: white;
+        border-radius: 10px;
+      }
+      
+      .request-table tr {
+        box-shadow: 0 2px 5px grey;
+        border-radius: 10px;
+      
+      
+      }
+      
+      .request-table .action-btn {
+        padding: 5px 10px;
+        margin: 2px;
+        cursor: pointer;
+      }
+      
+      .request-table .delete {
+        background-color: red;
+        border-radius: 5px;
+        border: none;
+        color: white;
+      }
+      
+      .request-table .accept {
+        border-radius: 5px;
+        border: none;
+        background-color: #0c77a8;
+        color: white;
+      }
+      
+      .accept:hover {
+        transform: scale(0.96);
+      }
+      
+      .delete:hover {
+        transform: scale(0.96);
+      }</style>
+      
+      <!-- Tables for Different Assistance Types -->
+ <div class="maincardcont">
+        <div class="card-container">
+  
+          <!-- <table class="request-table" id="AICS-table" style="display: none;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Amount of Payout</th>
+                <th>Date Released</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+   
+          <table class="request-table" id="SCA-table" style="display: none;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Amount of Payout</th>
+                <th>Date Released</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+      
+          <table class="request-table" id="EAR-table" style="display: none;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Amount of Payout</th>
+                <th>Date Released</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+
+          <table class="request-table" id="PWD-table" style="display: none;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Amount of Payout</th>
+                <th>Date Released</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table> -->
+          <div class="overflowcont" id="AICS-table" style="display: none;">
+        
+         
+            <table class="request-table">
+              <h3>Financial Assistance</h3>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Payout Amount</th>
+                  <th>Date Released</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="FA-table"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total Payout:</td>
+                  <td id="totalAICSAmount">0</td> <!-- Unique ID for AICS -->
+                  <td colspan="2"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="overflowcont" id="SCA-table" style="display: none;">
+            <h3>Senior Citizen</h3>
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Payout Amount</th>
+                  <th>Date Released</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="SC-table"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total Payout:</td>
+                  <td id="totalSCAAmount">0</td> 
+                  <td colspan="2"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="overflowcont" id="EAR-table" style="display: none;">
+            <h3>Educational Assistance</h3>
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Payout Amount</th>
+                  <th>Date Released</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="EA-table"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total Payout:</td>
+                  <td id="totalEARAmount">0</td> 
+                  <td colspan="2"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="overflowcont" id="PWD-table" style="display: none;">
+            <h3>PWD Assistance</h3>
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Payout Amount</th>
+                  <th>Date Released</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="PWD-table"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total Payout:</td>
+                  <td id="totalPWDAmount">0</td> 
+                  <td colspan="2"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+     // Role-Based Visibility and Display
+  const userRole = sessionStorage.getItem('userRole');
+  const roleDisplay = document.getElementById('roleDisplay');
+  const userManagementLink = document.querySelector('.userManagement');
+  const settingsLink = document.querySelector('.settings-link');
+  
+  if (userRole) {
+    roleDisplay.textContent = `${userRole.charAt(0).toUpperCase() + userRole.slice(1)}`;
+    if (userRole === 'staff') {
+      if (userManagementLink) userManagementLink.style.display = 'none';
+      if (settingsLink) settingsLink.style.display = 'none';
+    }
+  } else {
+    console.warn('User role not found in sessionStorage.');
+    roleDisplay.textContent = 'Unknown Role';
+  }
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    const assistanceTypes = ["AICS", "SCA", "EAR", "PWD"];
+  const tableBodies = {
+    AICS: document.getElementById("FA-table"),
+    SCA: document.getElementById("SC-table"),
+    EAR: document.getElementById("EA-table"),
+    PWD: document.getElementById("PWD-table"),
+  };
+  
+  const payoutAmounts = {
+    AICS: 2000,
+    SCA: 2000,
+    EAR: 4000,
+    PWD: 2000
+  };
+
+    // Load Payout History into Tables
+    function loadPayoutHistory(type) {
+      const historyRef = database.ref(`2-Payout-History/${type}`);
+
+      historyRef.once("value", (snapshot) => {
+        const data = snapshot.val();
+        const tableBody = document.querySelector(`#${type}-table tbody`);
+        document.getElementById(`total${type}Amount`).textContent = "0"; // Reset total to 0
+
+        if (!data) {
+          console.log(`No payout history found for ${type}`);
+          tableBody.innerHTML = `<tr><td colspan="6">No payout history found.</td></tr>`;
+          return;
+        }
+
+        tableBody.innerHTML = ""; // Clear existing rows
+        let totalAmount = 0;
+
+        Object.keys(data).forEach((key) => {
+          const applicant = data[key];
+          const row = `
+            <tr>
+              <td>${key}</td>
+              <td>${applicant.lastName || "N/A"}</td>
+              <td>${applicant.firstName || "N/A"}</td>
+              <td>${payoutAmounts[type]}</td>
+              <td>${applicant.payoutSchedule || "N/A"}</td>
+              <td>${applicant.status || "Paid"}</td>
+            </tr>`;
+          tableBody.innerHTML += row;
+          totalAmount += payoutAmounts[type];
+        });
+        document.getElementById(`total${type}Amount`).textContent = totalAmount;
+      }).catch((error) => {
+        console.error(`Error loading payout history for ${type}:`, error);
+      });
+    }
+
+    // Handle Assistance Type Dropdown
+    document.getElementById("assistanceTypeDropdown").addEventListener("change", (e) => {
+      const selectedType = e.target.value;
+
+      if (!selectedType) return;
+
+      assistanceTypes.forEach((type) => {
+        const tableElement = document.getElementById(`${type}-table`);
+        tableElement.style.display = type === selectedType ? "block" : "none";
+      });
+
+      loadPayoutHistory(selectedType); // Load payout history for the selected type
+    });
+  </script>
+</body>
+
+</html>

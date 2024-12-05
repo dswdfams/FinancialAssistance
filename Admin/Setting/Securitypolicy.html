@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="Aboutus.css" />
+    <title>Security Policing</title>
+</head>
+
+<body>
+
+    <nav>
+        <div class="Logocont">
+            <img src="C:\Users\63956\Downloads\PProj\User Interface\Images\DSWD.png" alt="" class="DSWDLOGO" />
+        </div>
+        <div class="time">
+            <div id="date-time-container">
+                <div id="date"></div>
+                <label for="">,</label>
+                <div id="time"></div>
+            </div>
+
+            <script>
+                function updateDateTime() {
+                    const now = new Date();
+
+                    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    const day = days[now.getDay()];
+                    const month = months[now.getMonth()];
+                    const date = now.getDate();
+                    const year = now.getFullYear();
+                    const dateString = `${day}, ${month} ${date}, ${year}`;
+
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+
+                    document.getElementById('date').textContent = dateString;
+                    document.getElementById('time').textContent = timeString;
+                }
+
+                updateDateTime();
+                setInterval(updateDateTime, 1000);
+            </script>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="Title">
+            <p id="Aboutus">
+                SECURITY POLICING
+            </p>
+            <p id="Aboutus-Paragraph">
+                Security policing plays a critical role in maintaining the safety and integrity of any organization or
+                community. It encompasses surveillance, compliance checks, and rapid response to incidents.
+            </p>
+        </div>
+
+        <div class="first-card-container">
+            <div class="picture-stack-container">
+                <img src="Image.jpg" alt="" id="one">
+                <img src="Image2.jpg" alt="">
+                <img src="Image3.jpg" alt="" id="three">
+            </div>
+            <div class="child-container">
+                <p id="Aboutus">
+                    OUR MISSION
+                </p>
+                <p id="Aboutus-Paragraph">
+                    To ensure safety and compliance while promoting a secure and productive environment. Security
+                    policing helps deter unauthorized access, protect assets, and enforce safety protocols.
+                </p>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

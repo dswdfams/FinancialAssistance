@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="EXTID.css" />
+  <link rel="stylesheet" href="/User Interface/footer-nav-user.css">
+  <title>Check Application Status</title>
+</head>
+
+<body>
+  <nav>
+    <div class="Logocont">
+      <img src="DSWD.png" alt="DSWD Logo" class="DSWDLOGO" />
+    </div>
+    <div class="fams-text"><p>DSWD - FAMS</p></div>
+    <div class="time">
+      <div id="date-time-container">
+        <div id="date"></div>
+        <label for="">,</label>
+        <div id="time"></div>
+      </div>
+      <script>
+        function updateDateTime() {
+            const now = new Date();
+            const days = [
+                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+            ];
+            const months = [
+                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            ];
+            const day = days[now.getDay()];
+            const month = months[now.getMonth()];
+            const date = now.getDate();
+            const year = now.getFullYear();
+            const dateString = `${day}, ${month} ${date}, ${year}`;
+    
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            const seconds = String(now.getSeconds()).padStart(2, "0");
+            const timeString = `${hours}:${minutes}:${seconds}`;
+    
+            document.getElementById("date").textContent = dateString;
+            document.getElementById("time").textContent = timeString;
+        }
+    
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+    </div>
+  </nav>
+  
+  <div class="maincont">
+    <div class="bcont">
+      <div class="title">
+        <p style="font-size: 26px">Registered</p>
+      </div>
+
+      <div class="regcont">
+        <div class="Dslogo">
+          <img src="DSWD-Logo-Icon.png" alt="DSWD Logo">
+        </div>
+        <div class="idinput">
+          <input type="text" id="residentIdInput" placeholder="Enter your registered ID (e.g., 0000000-0000)">
+          <p id="validationMessage" class="validation-message"></p> <!-- Validation message -->
+        </div>
+
+        <div class="buttons">
+          <a href="/index.html"><button>Cancel</button></a>
+          <button id="checkStatusButton">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup card for status -->
+
+  <div class="popup-card" id="statusPopup">
+    <div class="popup-content">
+      <span id="closePopup">&times;</span>
+      <h3>Application Status</h3>
+      <p id="statusMessage"></p>
+      <p id="additionalInfo"></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="upper-section">
+      <p>©2024 All Rights Reserved </p>
+    </div>
+
+    <div class="Lower-section">
+      <div class="first-section">
+        <p>DSWD - FAMS</p>
+      </div>
+      <div class="second-section">
+        <a href="/index.html">
+          <p>Home</p>
+        </a>
+        <a href="">
+          <p>About</p>
+        </a>
+        <a href="">
+          <p>Contact</p>
+        </a>
+      </div>
+      <div class="third-section"></div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2",
+    };
+  
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+  
+    // Function to validate Resident ID input
+    function validateResidentId(residentId) {
+      const idPattern = /^[0-9-]{7,12}$/; // Allows 7-12 characters of digits and dashes
+      return idPattern.test(residentId);
+    }
+  
+    // Function to check application status
+    function checkApplicationStatus(residentId) {
+      const trimmedId = residentId.slice(0, 12); // Process only the first 12 characters
+  
+      // Check in 2-Assistance (Pending or Under Review)
+      const assistanceRef = database.ref("2-Assistance");
+      const acceptedRef = database.ref("2-Accepted-Applications");
+      const rejectedRef = database.ref("2-Rejected-Applications");
+  
+      let matchFound = false;
+  
+      // Check in 2-Assistance (Pending or Under Review)
+      assistanceRef.once("value", (snapshot) => {
+        const assistanceData = snapshot.val();
+  
+        if (assistanceData) {
+          Object.keys(assistanceData).forEach((key) => {
+            if (key.startsWith(trimmedId)) {
+              matchFound = true;
+              const applicantData = assistanceData[key];
+              const status = applicantData.status || "Pending";
+              let additionalInfo = "Your application is still under review.";
+  
+              showPopup(status, additionalInfo);
+            }
+          });
+        }
+  
+        // If no match is found in 2-Assistance, check Accepted-Applications
+        if (!matchFound) {
+          acceptedRef.once("value", (snapshot) => {
+            const acceptedData = snapshot.val();
+  
+            if (acceptedData) {
+              Object.keys(acceptedData).forEach((assistanceType) => {
+                Object.keys(acceptedData[assistanceType]).forEach((key) => {
+                  if (key.startsWith(trimmedId)) {
+                    matchFound = true;
+                    const applicantData = acceptedData[assistanceType][key];
+                    const status = applicantData.status || "Accepted";
+                    let additionalInfo = "";
+  
+                    if (status === "Accepted") {
+                      additionalInfo = `Payout Date: ${new Date(applicantData.payoutDate).toLocaleDateString()}`;
+                    }
+  
+                    showPopup(status, additionalInfo);
+                  }
+                });
+              });
+            }
+  
+            // If no match is found in Accepted-Applications, check Rejected-Applications
+            if (!matchFound) {
+              rejectedRef.once("value", (snapshot) => {
+                const rejectedData = snapshot.val();
+  
+                if (rejectedData) {
+                  Object.keys(rejectedData).forEach((assistanceType) => {
+                    Object.keys(rejectedData[assistanceType]).forEach((key) => {
+                      if (key.startsWith(trimmedId)) {
+                        const applicantData = rejectedData[assistanceType][key];
+                        const status = applicantData.status || "Rejected";
+                        let additionalInfo = "";
+  
+                        if (status === "Rejected") {
+                          additionalInfo = `Reason for Rejection: ${applicantData.rejectionReason || "Not provided."}`;
+                        }
+  
+                        showPopup(status, additionalInfo);
+                      }
+                    });
+                  });
+                }
+  
+                if (!matchFound) {
+                  showPopup("No application found for this Resident ID.", "");
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  
+    // Show status popup
+    function showPopup(status, additionalInfo) {
+      document.getElementById("statusMessage").textContent = `Status: ${status}`;
+      document.getElementById("additionalInfo").textContent = additionalInfo;
+      document.getElementById("statusPopup").style.display = "block";
+    }
+  
+    // Close the popup
+    document.getElementById("closePopup").onclick = function () {
+      document.getElementById("statusPopup").style.display = "none";
+    };
+  
+    // Handle check status button click
+    document.getElementById("checkStatusButton").onclick = function () {
+      const residentId = document.getElementById("residentIdInput").value.trim();
+      const validationMessage = document.getElementById("validationMessage");
+  
+      if (residentId && validateResidentId(residentId)) {
+        validationMessage.textContent = ""; // Clear validation message
+        checkApplicationStatus(residentId);
+      } else {
+        validationMessage.textContent = "Invalid Resident ID. Please enter 7-12 digits (e.g., 0000000-0000).";
+        validationMessage.style.color = "red";
+      }
+    };
+  </script>
+  
+  
+</body>
+
+</html>

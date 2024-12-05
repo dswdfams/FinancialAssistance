@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../Navigation-footer.css">
+  <link rel="stylesheet" href="Usermanagement.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet" />
+  <title>User Management</title>
+</head>
+
+<body>
+  <div class="maincont">
+    <div class="nav">
+      <div class="imagecont">
+        <img src="DSWD-Logo-Icon.png" alt="" />
+      </div>
+
+      <div class="links">
+        <ul>
+          <li >
+            <a href="../dashboards/Dashboard.html">
+              <div>
+                <img src="icons8-dashboard-48.png" alt="" />
+                <label for="">Dashboard</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Activity log/ActivityLog.html">
+              <div>
+                <img src="icons8-verified-account-48.png" alt="" />
+                <label for="">Activity Log</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="../Application report/Applicationreport.html">
+              <div>
+                <img src="../Admin imgs/icons8-system-task-48.png" alt="" />
+                <label for="">Application report</label>
+              </div>
+            </a>
+          </li>
+          <li class="highlight">
+            <a href="../UserManagement/Usernanagement.html">
+              <div>
+                <img src="icons8-user-secured-48.png" alt="" />
+                <label for="">User Management</label>
+              </div>
+            </a>
+          </li>
+          <li >
+            <a href="/Admin/Payout Schedule/PayoutSchedule.html">
+              <div>
+                <img src="icons8-schedule-100.png" alt="" />
+                <label for="">Payout Schedule</label>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/Admin/Payout history/PayoutHistory.html">
+              <div>
+              <img src="icons8-history-100.png"
+            alt="" /><label>Payout History</label>
+          </div></a></li>
+        </li>
+        <li class="logout">
+          
+          <a href="/Admin/Login/Admin Login.html">
+         <div>
+            <img src="../Admin imgs/icons8-logout-32.png" alt="" />
+            <label for="">Logout</label>
+          </div>
+         </li>
+        </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="parent-cardcont">
+      <div class="title">
+        <div class="childtitle">
+          <p>USER MANAGEMENT</p>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <img src="icons8-search-50.png" alt="Search Icon" class="search-icon" />
+        <input type="text" class="search-input" placeholder="Search..." />
+      </div>
+
+    
+<!-- ---------------------------------------------- --> 
+
+
+      <div class="card-container">
+        <div class="overflowcont">
+          <!-- Account Creation Form -->
+          <div class="form-cont">
+            <h2>Create New User</h2>
+            <form id="createAccountForm">
+              <div class="flex-container">
+                <div class="input">
+                  <label for="name">Staff Name</label>
+                  <input type="text" id="name" placeholder="Enter name" required />
+                </div>
+                <div class="input">
+                  <label for="staffId">Staff ID</label>
+                  <input type="text" id="staffId" placeholder="Enter staff ID" required />
+                </div>
+              </div>
+              <div class="flex-container">
+                <div class="input">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" placeholder="Enter email" required />
+                </div>
+                <div class="input">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" placeholder="Enter password" required />
+                </div>
+
+                <div class="input">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" id="confirmPassword" placeholder="Confirm password" required />
+                </div>
+
+
+              </div>
+              <div class="input">
+                <label for="role">Select Role</label>
+                <select id="role" required>
+                  <option value="staff">Staff</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <button type="submit">Create Account</button>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+<!-- ---------------------------------------------- -->
+      <div class="table-overflow-debug">
+        <h2>Existing Users</h2>
+        <div class="overflowcont">
+          <table class="request-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Last Login</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiOsr6bY5BDKdiBPRzDgSpurHdkkUlc3k",
+      authDomain: "sia101-d60a1.firebaseapp.com",
+      databaseURL: "https://sia101-d60a1-default-rtdb.firebaseio.com",
+      projectId: "sia101-d60a1",
+      storageBucket: "sia101-d60a1.appspot.com",
+      messagingSenderId: "258109532727",
+      appId: "1:258109532727:web:73d735dc749d2cb4ebedb2"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Create Account
+    document.getElementById("createAccountForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const staffId = document.getElementById("staffId").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      const role = document.getElementById("role").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        await database.ref("2-Users/" + user.uid).set({
+          email,
+          name,
+          staffId,
+          role,
+          lastLogin: new Date().toISOString(),
+          status: "Active",
+        });
+        alert("User created successfully!");
+        loadUsers();
+      } catch (error) {
+        console.error(error);
+        alert("Error creating user: " + error.message);
+      }
+    });
+
+    // Load Users
+    async function loadUsers() {
+      const userTable = document.getElementById("userTable");
+      userTable.innerHTML = "";
+
+      const snapshot = await database.ref("2-Users").once("value");
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+        Object.keys(users).forEach((uid) => {
+          const user = users[uid];
+          const row = `
+            <tr>
+              <td>${user.email}</td>
+              <td>${user.name}</td>
+              <td>${user.role}</td>
+              <td>${new Date(user.lastLogin).toLocaleString()}</td>
+              <td>${user.status}</td>
+              <td>
+                <button onclick="deleteUser('${uid}')">Delete</button>
+              </td>
+            </tr>
+          `;
+          userTable.innerHTML += row;
+        });
+      } else {
+        userTable.innerHTML = '<tr><td colspan="6">No users found.</td></tr>';
+      }
+    }
+
+    // Delete User
+    async function deleteUser(uid) {
+      const confirmDelete = confirm("Are you sure you want to delete this user?");
+      if (!confirmDelete) return;
+
+      try {
+        await database.ref("2-Users/" + uid).remove();
+        alert("User deleted successfully!");
+        loadUsers();
+      } catch (error) {
+        console.error(error);
+        alert("Error deleting user: " + error.message);
+      }
+    }
+
+    loadUsers();
+  </script>
+</body>
+
+</html>
